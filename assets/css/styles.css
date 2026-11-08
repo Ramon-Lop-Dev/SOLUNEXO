@@ -3,6 +3,7 @@
 /* Configuración de scroll y tipografía base */
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -319,9 +320,17 @@ iframe {
   .float-wa {
     width: 52px;
     height: 52px;
-    right: 16px;
+    right: 24px;
     bottom: 16px;
     font-size: 28px;
+  }
+
+  header > div:first-child {
+    padding-right: 2rem;
+  }
+
+  #mobile-menu-btn {
+    flex-shrink: 0;
   }
 
   footer .max-w-7xl {
