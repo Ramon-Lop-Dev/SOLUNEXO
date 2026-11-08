@@ -2,43 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://solunexo.com/</loc>
+    <loc>https://solunexowebs.vercel.app/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://solunexo.com/assets/images/og-cover.png</image:loc>
+      <image:loc>https://solunexowebs.vercel.app/assets/images/og-cover.png</image:loc>
       <image:title>SOLUNEXO - Diseño Web y Demos en Vivo en Nicaragua</image:title>
     </image:image>
-  </url>
-  <url>
-    <loc>https://solunexo.com/#demos-portafolio</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://solunexo.com/#servicios</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://solunexo.com/#proceso</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://solunexo.com/#precios</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://solunexo.com/#contacto</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 </urlset>
