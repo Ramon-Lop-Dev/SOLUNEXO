@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>SOLUNEXO | Páginas Web y Demos en Vivo en Nicaragua</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: "#2563EB",
+              teal: "#0D9488",
+              dark: "#0F172A",
+              slate: "#334155",
+              muted: "#64748B",
+              light: "#F8FAFC",
+              surface: "#FFFFFF",
+              border: "#E2E8F0"
+            },
+            whatsapp: "#25D366"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          },
+          boxShadow: {
+            'clay': '0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02), inset 0 1px 2px rgba(255, 255, 255, 0.95)',
+            'clay-card': '0 16px 36px rgba(15, 23, 42, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 1px 3px rgba(15, 23, 42, 0.03)',
+            'clay-button': '0 8px 20px rgba(37, 99, 235, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4)',
+            'clay-float': '0 20px 40px -10px rgba(15, 23, 42, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.8)'
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    html { scroll-behavior: smooth; }
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFC;
+        color: #0F172A;
+      }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms cubic-bezier(.2,.7,.2,1), transform 700ms cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .float-soft { animation: float-soft 4s ease-in-out infinite; }
+    .float-delay { animation-delay: 900ms; }
+    @keyframes float-soft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .float-soft { animation: none; }
+    }
+  </style>
+</head>
+<body class="bg-[#FAFAFC] font-sans text-brand-dark antialiased selection:bg-brand-blue/10 selection:text-brand-blue">
+<!-- TOP HEADER -->
+<header class="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-xl border-b border-brand-border/70 shadow-sm transition-all">
+<div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-4">
+<!-- Official Horizontal Logo SVG -->
+<a aria-label="SOLUNEXO Inicio" class="flex items-center gap-3 group focus:outline-none" href="#">
+<div class="h-9 w-auto flex items-center">
+<svg aria-label="SOLUNEXO logotipo horizontal" class="h-8 w-auto" role="img" viewbox="0 0 397.26 104.00" xmlns="http://www.w3.org/2000/svg"><title>SOLUNEXO logotipo horizontal</title><g transform="translate(16 16)"><g transform="translate(0.00 0.00) scale(1.1250)"><g transform="translate(1 1.25)"><path d="M12 34 L27 48 L50 16" fill="none" stroke="#2563EB" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></path><circle cx="12" cy="34" fill="#0D9488" r="6.5"></circle><circle cx="50" cy="16" fill="#0D9488" r="6.5"></circle></g></g><path d="M15.50 0.55Q12.28 0.55 9.45 -0.62Q6.62 -1.79 4.58 -3.96Q2.53 -6.12 1.52 -9.06L7.36 -11.68Q8.65 -8.88 10.93 -7.27Q13.20 -5.66 15.96 -5.66Q17.43 -5.66 18.49 -6.12Q19.55 -6.58 20.15 -7.38Q20.75 -8.19 20.75 -9.29Q20.75 -10.49 20.01 -11.34Q19.27 -12.19 17.71 -12.70L10.99 -14.90Q6.90 -16.24 4.83 -18.70Q2.76 -21.16 2.76 -24.61Q2.76 -27.65 4.25 -29.95Q5.75 -32.25 8.44 -33.53Q11.13 -34.82 14.63 -34.82Q17.71 -34.82 20.33 -33.76Q22.95 -32.71 24.86 -30.77Q26.77 -28.84 27.74 -26.13L21.94 -23.51Q20.98 -25.90 19.04 -27.25Q17.11 -28.61 14.63 -28.61Q13.20 -28.61 12.10 -28.15Q10.99 -27.69 10.40 -26.84Q9.80 -25.99 9.80 -24.89Q9.80 -23.69 10.58 -22.79Q11.36 -21.90 12.93 -21.39L19.50 -19.27Q23.64 -17.94 25.69 -15.55Q27.74 -13.16 27.74 -9.71Q27.74 -6.72 26.17 -4.39Q24.61 -2.07 21.87 -0.76Q19.14 0.55 15.50 0.55Z M51.34 0.55Q47.47 0.55 44.16 -0.78Q40.85 -2.12 38.39 -4.53Q35.93 -6.95 34.55 -10.17Q33.17 -13.39 33.17 -17.16Q33.17 -20.93 34.52 -24.15Q35.88 -27.37 38.34 -29.76Q40.80 -32.15 44.11 -33.49Q47.43 -34.82 51.34 -34.82Q55.25 -34.82 58.56 -33.49Q61.87 -32.15 64.33 -29.76Q66.79 -27.37 68.15 -24.15Q69.51 -20.93 69.51 -17.16Q69.51 -13.39 68.13 -10.17Q66.75 -6.95 64.28 -4.53Q61.82 -2.12 58.51 -0.78Q55.20 0.55 51.34 0.55ZM51.34 -5.89Q53.68 -5.89 55.68 -6.72Q57.68 -7.54 59.20 -9.04Q60.72 -10.53 61.55 -12.60Q62.38 -14.67 62.38 -17.16Q62.38 -19.64 61.55 -21.69Q60.72 -23.74 59.20 -25.25Q57.68 -26.77 55.68 -27.58Q53.68 -28.38 51.34 -28.38Q48.99 -28.38 46.99 -27.58Q44.99 -26.77 43.47 -25.25Q41.95 -23.74 41.12 -21.69Q40.30 -19.64 40.30 -17.16Q40.30 -14.67 41.12 -12.60Q41.95 -10.53 43.47 -9.04Q44.99 -7.54 46.99 -6.72Q48.99 -5.89 51.34 -5.89Z M75.95 0.00V-34.27H83.08V-6.21H97.57V0.00Z M116.10 0.55Q112.06 0.55 108.88 -1.15Q105.71 -2.85 103.89 -5.82Q102.07 -8.79 102.07 -12.56V-34.27H109.20V-13.02Q109.20 -10.99 110.10 -9.36Q111.00 -7.73 112.56 -6.81Q114.13 -5.89 116.10 -5.89Q118.13 -5.89 119.67 -6.81Q121.21 -7.73 122.11 -9.36Q123.00 -10.99 123.00 -13.02V-34.27H130.13V-12.56Q130.13 -8.79 128.32 -5.82Q126.50 -2.85 123.33 -1.15Q120.15 0.55 116.10 0.55Z M137.17 0.00V-34.27H142.65L158.10 -13.89V-34.27H165.23V0.00H159.71L144.30 -20.84V0.00Z M172.68 0.00V-34.27H195.73V-28.06H179.81V-20.29H194.81V-14.08H179.81V-6.21H195.73V0.00Z M198.63 0.00 209.85 -17.16 198.63 -34.27H206.82L213.81 -23.60L220.80 -34.27H228.99L217.81 -17.16L228.99 0.00H220.80L213.85 -10.67L206.82 0.00Z M251.07 0.55Q247.20 0.55 243.89 -0.78Q240.58 -2.12 238.12 -4.53Q235.66 -6.95 234.28 -10.17Q232.90 -13.39 232.90 -17.16Q232.90 -20.93 234.25 -24.15Q235.61 -27.37 238.07 -29.76Q240.53 -32.15 243.85 -33.49Q247.16 -34.82 251.07 -34.82Q254.98 -34.82 258.29 -33.49Q261.60 -32.15 264.06 -29.76Q266.52 -27.37 267.88 -24.15Q269.24 -20.93 269.24 -17.16Q269.24 -13.39 267.86 -10.17Q266.48 -6.95 264.02 -4.53Q261.56 -2.12 258.24 -0.78Q254.93 0.55 251.07 0.55ZM251.07 -5.89Q253.41 -5.89 255.41 -6.72Q257.42 -7.54 258.93 -9.04Q260.45 -10.53 261.28 -12.60Q262.11 -14.67 262.11 -17.16Q262.11 -19.64 261.28 -21.69Q260.45 -23.74 258.93 -25.25Q257.42 -26.77 255.41 -27.58Q253.41 -28.38 251.07 -28.38Q248.72 -28.38 246.72 -27.58Q244.72 -26.77 243.20 -25.25Q241.68 -23.74 240.86 -21.69Q240.03 -19.64 240.03 -17.16Q240.03 -14.67 240.86 -12.60Q241.68 -10.53 243.20 -9.04Q244.72 -7.54 246.72 -6.72Q248.72 -5.89 251.07 -5.89Z" fill="#0F172A" transform="translate(94 53.14)"></path></g></svg>
+</div>
+<span class="hidden md:inline-block text-xs font-semibold text-brand-teal uppercase tracking-widest pl-2 border-l border-brand-border">
+          Managua • Web Studio
+        </span>
+</a>
+<!-- Desktop Nav -->
+<nav class="hidden lg:flex items-center gap-1">
+<a class="px-3.5 py-2 rounded-xl text-brand-slate hover:text-brand-blue hover:bg-slate-100/70 transition-all font-medium text-sm" href="#demos-portafolio">Demos en Vivo</a>
+<a class="px-3.5 py-2 rounded-xl text-brand-slate hover:text-brand-blue hover:bg-slate-100/70 transition-all font-medium text-sm" href="#servicios">Características</a>
+<a class="px-3.5 py-2 rounded-xl text-brand-slate hover:text-brand-blue hover:bg-slate-100/70 transition-all font-medium text-sm" href="#proceso">Proceso</a>
+<a class="px-3.5 py-2 rounded-xl text-brand-slate hover:text-brand-blue hover:bg-slate-100/70 transition-all font-medium text-sm" href="#precios">Planes de Inversión</a>
+</nav>
+<!-- Header Action -->
+<div class="flex items-center gap-3">
+<a class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white font-semibold text-sm shadow-sm hover:bg-brand-blue active:scale-95 transition-all" href="#contacto">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span>Solicitar Propuesta</span>
+</a>
+</div>
+</div>
+</header>
+<!-- MAIN BODY -->
+<main class="w-full pt-20">
+<!-- HERO SECTION -->
+<section class="relative w-full max-w-7xl mx-auto px-6 lg:px-12 pt-14 pb-16 flex flex-col items-center text-center overflow-hidden">
+<!-- Soft Pastel Background Diffusions -->
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 pointer-events-none -z-10 flex justify-around blur-3xl opacity-40">
+<div class="w-72 h-72 rounded-full bg-blue-200"></div>
+<div class="w-80 h-80 rounded-full bg-teal-100"></div>
+<div class="w-64 h-64 rounded-full bg-slate-200"></div>
+</div>
+<!-- Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-brand-border shadow-sm mb-6 transition-all hover:border-brand-blue/30">
+<span class="flex h-2.5 w-2.5 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-teal"></span>
+</span>
+<span class="text-xs font-bold text-brand-slate uppercase tracking-wider">
+          🇳🇮 Managua, Nicaragua • Soluciones Web Listas para Desplegar
+        </span>
+</div>
+<!-- Main Heading -->
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold max-w-4xl text-brand-dark tracking-tight leading-[1.15] mb-6">
+        Lanzamos Soluciones Web de Alto Impacto para <span class="bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent">Empresas en Nicaragua</span>
+</h1>
+<p class="text-lg sm:text-xl text-brand-muted max-w-3xl mb-10 leading-relaxed font-normal">
+        En <strong class="text-brand-dark font-semibold">SOLUNEXO</strong> diseñamos plataformas ágiles, adaptadas a dispositivos móviles y configuradas con comunicación directa a WhatsApp. Modelos funcionales listos para personalizarse y ponerse en marcha en tiempo récord.
+      </p>
+<!-- Primary Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center gap-4 mb-16 w-full sm:w-auto">
+<a class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-brand-blue text-white font-bold text-base flex items-center justify-center gap-2.5 shadow-clay-button hover:bg-blue-700 hover:-translate-y-0.5 active:scale-95 transition-all" href="https://wa.me/50585872276?text=Hola%20SOLUNEXO,%20deseo%20cotizar%20mi%20página%20web" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Cotizar por WhatsApp (+505)</span>
+</a>
+<a class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white/90 border border-brand-border text-brand-dark font-semibold text-base flex items-center justify-center gap-2 shadow-clay hover:bg-slate-50 transition-all" href="#demos-portafolio">
+<span>Ver Demos Modelo en Vivo</span>
+<span class="material-symbols-outlined text-[18px] text-brand-muted">arrow_downward</span>
+</a>
+</div>
+<!-- Laptop Preview -->
+<div class="reveal float-soft w-full max-w-4xl mb-16 mx-auto" data-delay="120">
+  <div class="relative rounded-[22px] border-[10px] border-slate-800 bg-slate-800 shadow-[0_35px_80px_-25px_rgba(15,23,42,0.38)] overflow-hidden">
+    <div class="absolute left-1/2 top-[-7px] z-10 h-[4px] w-16 -translate-x-1/2 rounded-full bg-slate-600"></div>
+    <div class="aspect-[16/10] overflow-hidden rounded-[12px] bg-white">
+      <img alt="Demo de sitio web médico desarrollado por SOLUNEXO" class="h-full w-full object-cover object-top" src="assets/demos/medico.png"/>
+    </div>
+  </div>
+  <div class="relative mx-auto h-3 w-[112%] max-w-none -translate-x-[6%] rounded-b-[28px] rounded-t-sm bg-gradient-to-b from-slate-300 to-slate-500 shadow-lg">
+    <div class="absolute left-1/2 top-0 h-[5px] w-[18%] -translate-x-1/2 rounded-b-lg bg-slate-200"></div>
+  </div>
+  <div class="mx-auto h-2 w-[72%] rounded-b-full bg-slate-300 shadow-sm"></div>
+</div>
+<!-- Feature Grid: Fact-based, No fake numbers -->
+<div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl text-left">
+<!-- Feature 1 -->
+<div class="p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-brand-border/80 shadow-clay flex items-start gap-4 hover:-translate-y-0.5 transition-transform">
+<div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">rocket_launch</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-brand-dark">Entrega Llave en Mano</h2>
+<p class="text-xs text-brand-muted mt-0.5 leading-snug">Listo en 5 a 10 días hábiles con tu contenido corporativo.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-brand-border/80 shadow-clay flex items-start gap-4 hover:-translate-y-0.5 transition-transform">
+<div class="w-10 h-10 rounded-xl bg-teal-50 text-brand-teal flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">pin_drop</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-brand-dark">Soporte Local en Managua</h2>
+<p class="text-xs text-brand-muted mt-0.5 leading-snug">Atención directa, cercanía y transferencias bancarias locales.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-brand-border/80 shadow-clay flex items-start gap-4 hover:-translate-y-0.5 transition-transform">
+<div class="w-10 h-10 rounded-xl bg-slate-100 text-brand-slate flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">smartphone</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-brand-dark">Optimizado para Móviles</h2>
+<p class="text-xs text-brand-muted mt-0.5 leading-snug">Carga ultrarrápida adaptada a conexiones Claro y Tigo.</p>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-brand-border/80 shadow-clay flex items-start gap-4 hover:-translate-y-0.5 transition-transform">
+<div class="w-10 h-10 rounded-xl bg-emerald-50 text-whatsapp flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">forum</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-brand-dark">Conexión a WhatsApp</h2>
+<p class="text-xs text-brand-muted mt-0.5 leading-snug">Botones de contacto y formularios directos al celular de tus ventas.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- PORTFOLIO / LIVE DEMOS SECTION -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 py-16 scroll-mt-24" id="demos-portafolio">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div class="space-y-3 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-brand-blue text-xs font-bold uppercase tracking-wider border border-blue-100">
+<span class="material-symbols-outlined text-[16px]">visibility</span> Plantillas Modelo en Vivo
+          </div>
+<h2 class="text-3xl lg:text-4xl font-extrabold text-brand-dark tracking-tight">
+            Explora Nuestras Demos Interactivas
+          </h2>
+<p class="text-brand-muted text-base leading-relaxed">
+            Demos reales publicadas en la nube. Te permiten evaluar de forma tangible la velocidad, estética y estructura antes de iniciar el desarrollo de tu sitio.
+          </p>
+</div>
+<!-- Currency Switcher Badge -->
+<div class="flex items-center self-start md:self-auto p-1.5 rounded-2xl bg-white border border-brand-border shadow-sm">
+<button class="px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-blue text-white shadow-sm" id="btn-usd" onclick="setCurrency('USD')">USD ($)</button>
+<button class="px-4 py-1.5 rounded-xl text-xs font-semibold transition-all text-brand-muted hover:text-brand-dark" id="btn-nio" onclick="setCurrency('NIO')">C$ Córdobas</button>
+</div>
+</div>
+<!-- 5 LIVE DEMOS GRID -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- DEMO 1: Clínica Médica -->
+<div class="group flex flex-col rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 overflow-hidden shadow-clay-card hover:shadow-clay-float hover:-translate-y-1.5 transition-all duration-300">
+<!-- Device Preview Frame -->
+<div class="relative bg-slate-100 border-b border-brand-border p-3">
+<div class="flex items-center gap-1.5 mb-2 px-1">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="text-[11px] font-mono text-brand-muted ml-2 truncate">medico-orpin.vercel.app</span>
+</div>
+<div class="relative h-60 w-full rounded-xl overflow-hidden bg-slate-200">
+<img alt="Captura demo Clínica Médica" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="assets/demos/medico.png"/>
+<div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 text-brand-teal text-[11px] font-bold shadow-sm backdrop-blur-sm">
+<span class="h-2 w-2 rounded-full bg-brand-teal animate-pulse"></span> Demo en Vivo
+              </div>
+</div>
+</div>
+<!-- Card Info -->
+<div class="p-6 flex flex-col flex-1 justify-between gap-6">
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-xs font-semibold text-brand-teal">
+<span class="material-symbols-outlined text-[16px]">local_hospital</span>
+<span>Salud &amp; Consultorios</span>
+</div>
+<h3 class="text-xl font-bold text-brand-dark">Clínica Médica &amp; Especialistas</h3>
+<p class="text-sm text-brand-muted line-clamp-2 leading-relaxed">
+                Agenda de citas, perfiles de médicos, catálogo de servicios clínicos y botón de emergencias por chat.
+              </p>
+</div>
+<div class="pt-4 border-t border-brand-border/60 flex items-center justify-between gap-4">
+<div>
+<span class="text-[11px] uppercase tracking-wider text-brand-muted font-bold block">Inversión Desde</span>
+<span class="text-lg font-bold text-brand-blue price-display" data-nio="C$ 10,950" data-usd="$299">$299</span>
+</div>
+<a class="px-4 py-2.5 rounded-xl bg-brand-blue text-white text-xs font-bold flex items-center gap-1.5 shadow-clay-button hover:bg-blue-700 active:scale-95 transition-all" href="https://medico-orpin.vercel.app/" rel="noopener noreferrer" target="_blank">
+<span>Abrir Demo en Vivo</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- DEMO 2: Asesoría Financiera -->
+<div class="group flex flex-col rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 overflow-hidden shadow-clay-card hover:shadow-clay-float hover:-translate-y-1.5 transition-all duration-300">
+<div class="relative bg-slate-100 border-b border-brand-border p-3">
+<div class="flex items-center gap-1.5 mb-2 px-1">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="text-[11px] font-mono text-brand-muted ml-2 truncate">asesoria-wheat.vercel.app</span>
+</div>
+<div class="relative h-60 w-full rounded-xl overflow-hidden bg-slate-200">
+<img alt="Captura demo Asesoría Financiera" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="assets/demos/asesoria.png"/>
+<div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 text-brand-teal text-[11px] font-bold shadow-sm backdrop-blur-sm">
+<span class="h-2 w-2 rounded-full bg-brand-teal animate-pulse"></span> Demo en Vivo
+              </div>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-6">
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-xs font-semibold text-brand-blue">
+<span class="material-symbols-outlined text-[16px]">query_stats</span>
+<span>Finanzas &amp; B2B</span>
+</div>
+<h3 class="text-xl font-bold text-brand-dark">Asesoría Financiera &amp; Consultoría</h3>
+<p class="text-sm text-brand-muted line-clamp-2 leading-relaxed">
+                Captación corporativa para firmas contables, diagnóstico financiero previo y portafolio de asesoría empresarial.
+              </p>
+</div>
+<div class="pt-4 border-t border-brand-border/60 flex items-center justify-between gap-4">
+<div>
+<span class="text-[11px] uppercase tracking-wider text-brand-muted font-bold block">Inversión Desde</span>
+<span class="text-lg font-bold text-brand-blue price-display" data-nio="C$ 12,780" data-usd="$349">$349</span>
+</div>
+<a class="px-4 py-2.5 rounded-xl bg-brand-blue text-white text-xs font-bold flex items-center gap-1.5 shadow-clay-button hover:bg-blue-700 active:scale-95 transition-all" href="https://asesoria-wheat.vercel.app" rel="noopener noreferrer" target="_blank">
+<span>Abrir Demo en Vivo</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- DEMO 3: Joyería Fina -->
+<div class="group flex flex-col rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 overflow-hidden shadow-clay-card hover:shadow-clay-float hover:-translate-y-1.5 transition-all duration-300">
+<div class="relative bg-slate-100 border-b border-brand-border p-3">
+<div class="flex items-center gap-1.5 mb-2 px-1">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="text-[11px] font-mono text-brand-muted ml-2 truncate">joyeria-six.vercel.app</span>
+</div>
+<div class="relative h-60 w-full rounded-xl overflow-hidden bg-slate-200">
+<img alt="Captura demo Joyería y Catálogo" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="assets/demos/joyeria.png"/>
+<div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 text-brand-teal text-[11px] font-bold shadow-sm backdrop-blur-sm">
+<span class="h-2 w-2 rounded-full bg-brand-teal animate-pulse"></span> Demo en Vivo
+              </div>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-6">
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-xs font-semibold text-amber-600">
+<span class="material-symbols-outlined text-[16px]">diamond</span>
+<span>Comercio &amp; Catálogo</span>
+</div>
+<h3 class="text-xl font-bold text-brand-dark">Joyería Fina &amp; Catálogo</h3>
+<p class="text-sm text-brand-muted line-clamp-2 leading-relaxed">
+                Catálogo visual premium, presentación de colecciones y pedidos directos hacia WhatsApp Business.
+              </p>
+</div>
+<div class="pt-4 border-t border-brand-border/60 flex items-center justify-between gap-4">
+<div>
+<span class="text-[11px] uppercase tracking-wider text-brand-muted font-bold block">Inversión Desde</span>
+<span class="text-lg font-bold text-brand-blue price-display" data-nio="C$ 18,280" data-usd="$499">$499</span>
+</div>
+<a class="px-4 py-2.5 rounded-xl bg-brand-blue text-white text-xs font-bold flex items-center gap-1.5 shadow-clay-button hover:bg-blue-700 active:scale-95 transition-all" href="https://joyeria-six.vercel.app/" rel="noopener noreferrer" target="_blank">
+<span>Abrir Demo en Vivo</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- DEMO 4: Saasly Tech -->
+<div class="group flex flex-col rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 overflow-hidden shadow-clay-card hover:shadow-clay-float hover:-translate-y-1.5 transition-all duration-300">
+<div class="relative bg-slate-100 border-b border-brand-border p-3">
+<div class="flex items-center gap-1.5 mb-2 px-1">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="text-[11px] font-mono text-brand-muted ml-2 truncate">saasly-alpha.vercel.app</span>
+</div>
+<div class="relative h-60 w-full rounded-xl overflow-hidden bg-slate-200">
+<img alt="Captura demo Saasly Plataforma" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="assets/demos/saasly.png"/>
+<div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 text-brand-teal text-[11px] font-bold shadow-sm backdrop-blur-sm">
+<span class="h-2 w-2 rounded-full bg-brand-teal animate-pulse"></span> Demo en Vivo
+              </div>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-6">
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-xs font-semibold text-brand-blue">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span>Software &amp; Startups</span>
+</div>
+<h3 class="text-xl font-bold text-brand-dark">Saasly • Plataforma Tecnológica</h3>
+<p class="text-sm text-brand-muted line-clamp-2 leading-relaxed">
+                Landing moderna para startups de software, comparativa clara de planes y captura de prospectos interesados.
+              </p>
+</div>
+<div class="pt-4 border-t border-brand-border/60 flex items-center justify-between gap-4">
+<div>
+<span class="text-[11px] uppercase tracking-wider text-brand-muted font-bold block">Inversión Desde</span>
+<span class="text-lg font-bold text-brand-blue price-display" data-nio="C$ 15,390" data-usd="$420">$420</span>
+</div>
+<a class="px-4 py-2.5 rounded-xl bg-brand-blue text-white text-xs font-bold flex items-center gap-1.5 shadow-clay-button hover:bg-blue-700 active:scale-95 transition-all" href="https://saasly-alpha.vercel.app" rel="noopener noreferrer" target="_blank">
+<span>Abrir Demo en Vivo</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- DEMO 5: Bufete Jurídico & Abogados (Takes 2 cols on lg) -->
+<div class="group flex flex-col lg:col-span-2 rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 overflow-hidden shadow-clay-card hover:shadow-clay-float hover:-translate-y-1.5 transition-all duration-300">
+<div class="grid grid-cols-1 lg:grid-cols-12 h-full">
+<!-- Left Screen preview -->
+<div class="lg:col-span-6 bg-slate-100 border-b lg:border-b-0 lg:border-r border-brand-border p-3 flex flex-col">
+<div class="flex items-center gap-1.5 mb-2 px-1">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="text-[11px] font-mono text-brand-muted ml-2 truncate">bufete-nu.vercel.app</span>
+</div>
+<div class="relative h-64 lg:h-full w-full rounded-xl overflow-hidden bg-slate-200 min-h-[220px]">
+<img alt="Captura demo Bufete Jurídico" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="assets/demos/bufete.png"/>
+<div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 text-brand-teal text-[11px] font-bold shadow-sm backdrop-blur-sm">
+<span class="h-2 w-2 rounded-full bg-brand-teal animate-pulse"></span> Demo en Vivo
+                </div>
+</div>
+</div>
+<!-- Right Info -->
+<div class="lg:col-span-6 p-6 lg:p-8 flex flex-col justify-between gap-6">
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-xs font-semibold text-slate-700">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Servicios Legales &amp; Notaría</span>
+</div>
+<h3 class="text-2xl font-bold text-brand-dark">Bufete Jurídico &amp; Abogados</h3>
+<p class="text-sm text-brand-muted leading-relaxed">
+                  Estructura sobria y profesional creada para despachos de abogados en Managua. Expone con claridad las áreas de práctica, perfiles profesionales del equipo y formulario de solicitud de consulta inicial.
+                </p>
+<div class="pt-2 flex flex-wrap gap-2 text-xs font-medium text-brand-slate">
+<span class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">Áreas de Práctica</span>
+<span class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">Perfiles de Socios</span>
+<span class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">Contacto Directo</span>
+</div>
+</div>
+<div class="pt-6 border-t border-brand-border/60 flex items-center justify-between gap-4">
+<div>
+<span class="text-[11px] uppercase tracking-wider text-brand-muted font-bold block">Inversión Desde</span>
+<span class="text-xl font-bold text-brand-blue price-display" data-nio="C$ 13,920" data-usd="$380">$380</span>
+</div>
+<a class="px-5 py-2.5 rounded-xl bg-brand-blue text-white text-xs font-bold flex items-center gap-1.5 shadow-clay-button hover:bg-blue-700 active:scale-95 transition-all" href="https://bufete-nu.vercel.app" rel="noopener noreferrer" target="_blank">
+<span>Abrir Demo en Vivo</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CARACTERÍSTICAS & ADAPTACIÓN LOCAL -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 py-16" id="servicios">
+<div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+<span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Enfoque de Desarrollo</span>
+<h2 class="text-3xl lg:text-4xl font-extrabold text-brand-dark tracking-tight">
+          Diseñado para el Contexto Comercial de Nicaragua
+        </h2>
+<p class="text-brand-muted text-base">
+          Construimos páginas funcionales que responden a cómo buscan, navegan y contactan los clientes en nuestro país.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Pillar 1 -->
+<div class="p-7 rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 shadow-clay-card space-y-3 hover:-translate-y-1 transition-transform">
+<div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">devices_other</span>
+</div>
+<h3 class="text-lg font-bold text-brand-dark">Adaptación Móvil Total</h3>
+<p class="text-sm text-brand-muted leading-relaxed">
+            La mayor parte del tráfico local proviene de teléfonos inteligentes. El sitio se visualiza nítido y ordenado en cualquier pantalla.
+          </p>
+</div>
+<!-- Pillar 2 -->
+<div class="p-7 rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 shadow-clay-card space-y-3 hover:-translate-y-1 transition-transform">
+<div class="w-12 h-12 rounded-2xl bg-teal-50 text-brand-teal flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">speed</span>
+</div>
+<h3 class="text-lg font-bold text-brand-dark">Carga Rápida y Limpia</h3>
+<p class="text-sm text-brand-muted leading-relaxed">
+            Estructura optimizada para responder con ligereza en redes móviles Claro y Tigo en todo el territorio nacional.
+          </p>
+</div>
+<!-- Pillar 3 -->
+<div class="p-7 rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 shadow-clay-card space-y-3 hover:-translate-y-1 transition-transform">
+<div class="w-12 h-12 rounded-2xl bg-emerald-50 text-whatsapp flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">chat</span>
+</div>
+<h3 class="text-lg font-bold text-brand-dark">Flujos hacia WhatsApp</h3>
+<p class="text-sm text-brand-muted leading-relaxed">
+            Botones que abren de inmediato conversaciones con mensajes preconfigurados hacia el número de tu equipo de atención.
+          </p>
+</div>
+<!-- Pillar 4 -->
+<div class="p-7 rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 shadow-clay-card space-y-3 hover:-translate-y-1 transition-transform">
+<div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">handshake</span>
+</div>
+<h3 class="text-lg font-bold text-brand-dark">Trato Directo y Local</h3>
+<p class="text-sm text-brand-muted leading-relaxed">
+            Reunión de coordinación presencial o virtual en Managua, acuerdos transparentes y pagos por transferencia bancaria local.
+          </p>
+</div>
+</div>
+</section>
+<!-- PLANES DE INVERSIÓN (TRANSPARENTE) -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 py-16" id="precios">
+<div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+<span class="text-xs font-bold text-brand-blue uppercase tracking-widest">Inversión Transparente</span>
+<h2 class="text-3xl lg:text-4xl font-extrabold text-brand-dark tracking-tight">
+          Planes y Soluciones para Cada Necesidad
+        </h2>
+<p class="text-brand-muted text-base">
+          Precios claros, sin costos ocultos. Incluyen puesta en marcha, dominio y configuración inicial.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+<!-- Plan 1: Landing Page Express -->
+<div class="p-8 rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 shadow-clay-card flex flex-col justify-between gap-8 hover:-translate-y-1 transition-all">
+<div class="space-y-6">
+<div>
+<h3 class="text-xl font-bold text-brand-dark">Emprendedor Express</h3>
+<p class="text-sm text-brand-muted mt-1">Para profesionales independientes y servicios específicos.</p>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-extrabold text-brand-dark price-display" data-nio="C$ 7,290" data-usd="$199">$199</span>
+<span class="text-xs font-semibold text-brand-muted">pago único</span>
+</div>
+<ul class="space-y-3 text-sm text-brand-slate">
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Sitio One-Page (Landing Page)</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Enlace directo a WhatsApp de ventas</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Dominio .com y certificado SSL (1 año)</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Hospedaje de alta velocidad incluido</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Entrega estimada: 5 días hábiles</span>
+</li>
+</ul>
+</div>
+<a class="w-full py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-brand-dark text-sm font-bold text-center border border-slate-200 transition-all" href="https://wa.me/50585872276?text=Hola,%20deseo%20consultar%20el%20Plan%20Emprendedor%20Express" rel="noopener noreferrer" target="_blank">
+            Consultar Plan Express
+          </a>
+</div>
+<!-- Plan 2: Negocio Pro (Destacado) -->
+<div class="relative p-8 rounded-3xl bg-white border-2 border-brand-blue/30 shadow-clay-float flex flex-col justify-between gap-8 transform lg:-translate-y-3">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-blue text-white text-xs font-bold uppercase tracking-wider shadow-sm">
+            Recomendado para Empresas
+          </div>
+<div class="space-y-6 pt-2">
+<div>
+<h3 class="text-xl font-bold text-brand-dark">Negocio Pro</h3>
+<p class="text-sm text-brand-muted mt-1">Para clínicas, bufetes y empresas que necesitan presencia completa.</p>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-extrabold text-brand-blue price-display" data-nio="C$ 14,600" data-usd="$399">$399</span>
+<span class="text-xs font-semibold text-brand-muted">pago único</span>
+</div>
+<ul class="space-y-3 text-sm text-brand-slate">
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-blue text-[18px]">check_circle</span>
+<span class="font-semibold text-brand-dark">Sitio Multi-Sección (hasta 6 páginas)</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-blue text-[18px]">check_circle</span>
+<span>Optimización SEO y ficha Google Maps</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-blue text-[18px]">check_circle</span>
+<span>Configuración de correos corporativos</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-blue text-[18px]">check_circle</span>
+<span>Formulario con notificaciones instantáneas</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-blue text-[18px]">check_circle</span>
+<span>Entrega estimada: 8 días hábiles</span>
+</li>
+</ul>
+</div>
+<a class="w-full py-3.5 rounded-2xl bg-brand-blue hover:bg-blue-700 hover:-translate-y-0.5 text-white text-sm font-bold text-center shadow-clay-button active:scale-95 transition-all" href="https://wa.me/50585872276?text=Hola,%20deseo%20iniciar%20el%20Plan%20Negocio%20Pro" rel="noopener noreferrer" target="_blank">
+            Elegir Plan Negocio Pro
+          </a>
+</div>
+<!-- Plan 3: Catálogo y Medida -->
+<div class="p-8 rounded-3xl bg-white/90 backdrop-blur-md border border-brand-border/80 shadow-clay-card flex flex-col justify-between gap-8 hover:-translate-y-1 transition-all">
+<div class="space-y-6">
+<div>
+<h3 class="text-xl font-bold text-brand-dark">Catálogo &amp; Medida</h3>
+<p class="text-sm text-brand-muted mt-1">Para exhibición de productos, reservas especializadas o software.</p>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-extrabold text-brand-dark price-display" data-nio="C$ 21,900" data-usd="$599">$599</span>
+<span class="text-xs font-semibold text-brand-muted">pago único</span>
+</div>
+<ul class="space-y-3 text-sm text-brand-slate">
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Catálogo de productos o servicios interactivo</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Pedidos y consultas dirigidos a WhatsApp</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Panel de autogestión de contenidos</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Sesión de capacitación para tu personal</span>
+</li>
+<li class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-brand-teal text-[18px]">check_circle</span>
+<span>Soporte post-lanzamiento dedicado</span>
+</li>
+</ul>
+</div>
+<a class="w-full py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-brand-dark text-sm font-bold text-center border border-slate-200 transition-all" href="https://wa.me/50585872276?text=Hola,%20deseo%20cotizar%20un%20proyecto%20a%20la%20medida" rel="noopener noreferrer" target="_blank">
+            Consultar Solución a Medida
+          </a>
+</div>
+</div>
+</section>
+<!-- PROCESO DE TRABAJO -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 py-16" id="proceso">
+<div class="p-8 lg:p-12 rounded-3xl bg-white border border-brand-border/80 shadow-clay-card">
+<div class="max-w-2xl mb-12 space-y-2">
+<span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Metodología Clara</span>
+<h2 class="text-3xl font-extrabold text-brand-dark">Cómo Trabajamos Juntos</h2>
+<p class="text-brand-muted text-sm">Flujo de trabajo estructurado para desplegar tu presencia web sin contratiempos.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="space-y-3">
+<div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-blue font-extrabold text-sm flex items-center justify-center border border-blue-100">
+              01
+            </div>
+<h3 class="text-base font-bold text-brand-dark">Definición &amp; Propuesta</h3>
+<p class="text-xs text-brand-muted leading-relaxed">
+              Analizamos los requerimientos por WhatsApp o reunión virtual y acordamos la demo o estructura idónea.
+            </p>
+</div>
+<div class="space-y-3">
+<div class="w-10 h-10 rounded-xl bg-teal-50 text-brand-teal font-extrabold text-sm flex items-center justify-center border border-teal-100">
+              02
+            </div>
+<h3 class="text-base font-bold text-brand-dark">Personalización</h3>
+<p class="text-xs text-brand-muted leading-relaxed">
+              Adaptamos logotipos, paleta de colores, textos y fotografías oficiales de tu empresa o negocio.
+            </p>
+</div>
+<div class="space-y-3">
+<div class="w-10 h-10 rounded-xl bg-slate-100 text-brand-slate font-extrabold text-sm flex items-center justify-center border border-slate-200">
+              03
+            </div>
+<h3 class="text-base font-bold text-brand-dark">Pruebas &amp; Optimización</h3>
+<p class="text-xs text-brand-muted leading-relaxed">
+              Verificamos velocidad de carga en dispositivos móviles, enlaces de contacto y configuración de correos.
+            </p>
+</div>
+<div class="space-y-3">
+<div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-extrabold text-sm flex items-center justify-center border border-emerald-100">
+              04
+            </div>
+<h3 class="text-base font-bold text-brand-dark">Lanzamiento Oficial</h3>
+<p class="text-xs text-brand-muted leading-relaxed">
+              Publicamos tu dominio en línea, te entregamos accesos y brindamos soporte continuo en Managua.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- FORMULARIO & LLAMADO FINAL -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 py-16 mb-8" id="contacto">
+<div class="relative rounded-3xl bg-gradient-to-br from-white via-slate-50 to-blue-50/40 border border-brand-border/80 p-8 md:p-12 shadow-clay-card">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<div class="lg:col-span-6 space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider border border-emerald-200">
+<span class="h-2 w-2 rounded-full bg-whatsapp animate-ping"></span> Atención Directa en Managua
+            </div>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-brand-dark tracking-tight leading-tight">
+              ¿Listo para publicar tu próxima página web?
+            </h2>
+<p class="text-brand-muted text-base leading-relaxed">
+              Comunícate con nosotros para coordinar tu propuesta. Selecciona una de nuestras demos base o dinos lo que tu marca necesita.
+            </p>
+<div class="pt-2">
+<a class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-whatsapp text-white font-bold text-sm shadow-sm hover:brightness-105 hover:-translate-y-0.5 active:scale-95 transition-all" href="https://wa.me/50585872276?text=Hola%20SOLUNEXO,%20deseo%20recibir%20información%20sobre%20sus%20servicios" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Escribir directamente al WhatsApp (+505)</span>
+</a>
+</div>
+</div>
+<!-- Express Form -->
+<div class="lg:col-span-6">
+<div class="p-7 rounded-2xl bg-white border border-brand-border shadow-clay space-y-4">
+<h3 class="text-lg font-bold text-brand-dark">Solicitud de Información</h3>
+<form class="space-y-3.5" onsubmit="handleQuickQuote(event)">
+<div>
+<label class="block text-xs font-bold text-brand-slate mb-1 uppercase tracking-wider">Tu Nombre</label>
+<input class="w-full px-3.5 py-2.5 rounded-xl border border-brand-border bg-slate-50/50 text-brand-dark text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue" id="quote-name" placeholder="Ej. Carlos Jarquín" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+<div>
+<label class="block text-xs font-bold text-brand-slate mb-1 uppercase tracking-wider">Negocio o Empresa</label>
+<input class="w-full px-3.5 py-2.5 rounded-xl border border-brand-border bg-slate-50/50 text-brand-dark text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue" id="quote-business" placeholder="Ej. Clínica Dental" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-brand-slate mb-1 uppercase tracking-wider">Teléfono / WhatsApp</label>
+<input class="w-full px-3.5 py-2.5 rounded-xl border border-brand-border bg-slate-50/50 text-brand-dark text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue" id="quote-phone" placeholder="Ej. 8888-8888" required="" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-brand-slate mb-1 uppercase tracking-wider">Rubro o Demo de Interés</label>
+<select class="w-full px-3.5 py-2.5 rounded-xl border border-brand-border bg-slate-50/50 text-brand-dark text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue" id="quote-sector">
+<option value="Clínica / Médicos">Demo Clínica Médica &amp; Especialistas</option>
+<option value="Bufete Jurídico / Abogados">Demo Bufete Jurídico &amp; Abogados</option>
+<option value="Asesoría Financiera">Demo Asesoría Financiera &amp; Consultoría</option>
+<option value="Joyería / Catálogo">Demo Joyería Fina &amp; Catálogo</option>
+<option value="Software / SaaS">Demo Saasly • Tecnología</option>
+<option value="Otro Proyecto Personalizado">Otro proyecto personalizado en Nicaragua</option>
+</select>
+</div>
+<button class="w-full py-3 rounded-xl bg-brand-blue hover:bg-blue-700 text-white text-sm font-bold flex items-center justify-center gap-2 shadow-clay-button active:scale-95 transition-all" type="submit">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Enviar y Abrir Chat de WhatsApp</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="w-full bg-white border-t border-brand-border pt-12 pb-12">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+<div class="space-y-3">
+<!-- Logo SVG -->
+<div class="h-8 w-auto flex items-center">
+<svg aria-label="SOLUNEXO logotipo horizontal" class="h-7 w-auto" role="img" viewbox="0 0 397.26 104.00" xmlns="http://www.w3.org/2000/svg"><title>SOLUNEXO logotipo horizontal</title><g transform="translate(16 16)"><g transform="translate(0.00 0.00) scale(1.1250)"><g transform="translate(1 1.25)"><path d="M12 34 L27 48 L50 16" fill="none" stroke="#2563EB" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></path><circle cx="12" cy="34" fill="#0D9488" r="6.5"></circle><circle cx="50" cy="16" fill="#0D9488" r="6.5"></circle></g></g><path d="M15.50 0.55Q12.28 0.55 9.45 -0.62Q6.62 -1.79 4.58 -3.96Q2.53 -6.12 1.52 -9.06L7.36 -11.68Q8.65 -8.88 10.93 -7.27Q13.20 -5.66 15.96 -5.66Q17.43 -5.66 18.49 -6.12Q19.55 -6.58 20.15 -7.38Q20.75 -8.19 20.75 -9.29Q20.75 -10.49 20.01 -11.34Q19.27 -12.19 17.71 -12.70L10.99 -14.90Q6.90 -16.24 4.83 -18.70Q2.76 -21.16 2.76 -24.61Q2.76 -27.65 4.25 -29.95Q5.75 -32.25 8.44 -33.53Q11.13 -34.82 14.63 -34.82Q17.71 -34.82 20.33 -33.76Q22.95 -32.71 24.86 -30.77Q26.77 -28.84 27.74 -26.13L21.94 -23.51Q20.98 -25.90 19.04 -27.25Q17.11 -28.61 14.63 -28.61Q13.20 -28.61 12.10 -28.15Q10.99 -27.69 10.40 -26.84Q9.80 -25.99 9.80 -24.89Q9.80 -23.69 10.58 -22.79Q11.36 -21.90 12.93 -21.39L19.50 -19.27Q23.64 -17.94 25.69 -15.55Q27.74 -13.16 27.74 -9.71Q27.74 -6.72 26.17 -4.39Q24.61 -2.07 21.87 -0.76Q19.14 0.55 15.50 0.55Z M51.34 0.55Q47.47 0.55 44.16 -0.78Q40.85 -2.12 38.39 -4.53Q35.93 -6.95 34.55 -10.17Q33.17 -13.39 33.17 -17.16Q33.17 -20.93 34.52 -24.15Q35.88 -27.37 38.34 -29.76Q40.80 -32.15 44.11 -33.49Q47.43 -34.82 51.34 -34.82Q55.25 -34.82 58.56 -33.49Q61.87 -32.15 64.33 -29.76Q66.79 -27.37 68.15 -24.15Q69.51 -20.93 69.51 -17.16Q69.51 -13.39 68.13 -10.17Q66.75 -6.95 64.28 -4.53Q61.82 -2.12 58.51 -0.78Q55.20 0.55 51.34 0.55ZM51.34 -5.89Q53.68 -5.89 55.68 -6.72Q57.68 -7.54 59.20 -9.04Q60.72 -10.53 61.55 -12.60Q62.38 -14.67 62.38 -17.16Q62.38 -19.64 61.55 -21.69Q60.72 -23.74 59.20 -25.25Q57.68 -26.77 55.68 -27.58Q53.68 -28.38 51.34 -28.38Q48.99 -28.38 46.99 -27.58Q44.99 -26.77 43.47 -25.25Q41.95 -23.74 41.12 -21.69Q40.30 -19.64 40.30 -17.16Q40.30 -14.67 41.12 -12.60Q41.95 -10.53 43.47 -9.04Q44.99 -7.54 46.99 -6.72Q48.99 -5.89 51.34 -5.89Z M75.95 0.00V-34.27H83.08V-6.21H97.57V0.00Z M116.10 0.55Q112.06 0.55 108.88 -1.15Q105.71 -2.85 103.89 -5.82Q102.07 -8.79 102.07 -12.56V-34.27H109.20V-13.02Q109.20 -10.99 110.10 -9.36Q111.00 -7.73 112.56 -6.81Q114.13 -5.89 116.10 -5.89Q118.13 -5.89 119.67 -6.81Q121.21 -7.73 122.11 -9.36Q123.00 -10.99 123.00 -13.02V-34.27H130.13V-12.56Q130.13 -8.79 128.32 -5.82Q126.50 -2.85 123.33 -1.15Q120.15 0.55 116.10 0.55Z M137.17 0.00V-34.27H142.65L158.10 -13.89V-34.27H165.23V0.00H159.71L144.30 -20.84V0.00Z M172.68 0.00V-34.27H195.73V-28.06H179.81V-20.29H194.81V-14.08H179.81V-6.21H195.73V0.00Z M198.63 0.00 209.85 -17.16 198.63 -34.27H206.82L213.81 -23.60L220.80 -34.27H228.99L217.81 -17.16L228.99 0.00H220.80L213.85 -10.67L206.82 0.00Z M251.07 0.55Q247.20 0.55 243.89 -0.78Q240.58 -2.12 238.12 -4.53Q235.66 -6.95 234.28 -10.17Q232.90 -13.39 232.90 -17.16Q232.90 -20.93 234.25 -24.15Q235.61 -27.37 238.07 -29.76Q240.53 -32.15 243.85 -33.49Q247.16 -34.82 251.07 -34.82Q254.98 -34.82 258.29 -33.49Q261.60 -32.15 264.06 -29.76Q266.52 -27.37 267.88 -24.15Q269.24 -20.93 269.24 -17.16Q269.24 -13.39 267.86 -10.17Q266.48 -6.95 264.02 -4.53Q261.56 -2.12 258.24 -0.78Q254.93 0.55 251.07 0.55ZM251.07 -5.89Q253.41 -5.89 255.41 -6.72Q257.42 -7.54 258.93 -9.04Q260.45 -10.53 261.28 -12.60Q262.11 -14.67 262.11 -17.16Q262.11 -19.64 261.28 -21.69Q260.45 -23.74 258.93 -25.25Q257.42 -26.77 255.41 -27.58Q253.41 -28.38 251.07 -28.38Q248.72 -28.38 246.72 -27.58Q244.72 -26.77 243.20 -25.25Q241.68 -23.74 240.86 -21.69Q240.03 -19.64 240.03 -17.16Q240.03 -14.67 240.86 -12.60Q241.68 -10.53 243.20 -9.04Q244.72 -7.54 246.72 -6.72Q248.72 -5.89 251.07 -5.89Z" fill="#0F172A" transform="translate(94 53.14)"></path></g></svg>
+</div>
+<p class="text-xs text-brand-muted leading-relaxed">
+          Diseño web moderno, modelos funcionales y despliegue rápido para emprendimientos y marcas en Managua, Nicaragua.
+        </p>
+</div>
+<div class="space-y-2">
+<h4 class="text-sm font-bold text-brand-dark">Demos Destacadas</h4>
+<ul class="space-y-1.5 text-xs text-brand-muted">
+<li><a class="hover:text-brand-blue" href="https://medico-orpin.vercel.app/" target="_blank">Clínica Médica &amp; Citas</a></li>
+<li><a class="hover:text-brand-blue" href="https://bufete-nu.vercel.app" target="_blank">Bufete Jurídico &amp; Legal</a></li>
+<li><a class="hover:text-brand-blue" href="https://joyeria-six.vercel.app/" target="_blank">Joyería Fina &amp; Catálogo</a></li>
+<li><a class="hover:text-brand-blue" href="https://asesoria-wheat.vercel.app" target="_blank">Asesoría Financiera B2B</a></li>
+<li><a class="hover:text-brand-blue" href="https://saasly-alpha.vercel.app" target="_blank">Plataforma SaaS</a></li>
+</ul>
+</div>
+<div class="space-y-2">
+<h4 class="text-sm font-bold text-brand-dark">Atención</h4>
+<div class="space-y-1.5 text-xs text-brand-muted">
+<p>Lunes a Viernes: 8:00 AM – 6:00 PM</p>
+<p>Sábados: 8:30 AM – 1:00 PM</p>
+<p class="font-medium text-brand-dark">Managua, Nicaragua</p>
+<p class="text-brand-teal font-semibold">Soporte WhatsApp (+505)</p>
+</div>
+</div>
+<div class="space-y-2">
+<h4 class="text-sm font-bold text-brand-dark">Contacto</h4>
+<p class="text-xs text-brand-muted">Escríbenos para agendar una demostración en vivo o reunión de requerimientos.</p>
+<div class="pt-1">
+<a class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue hover:underline" href="https://wa.me/50585872276" target="_blank">
+<span>+505 8587 2276</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 lg:px-12 pt-6 border-t border-brand-border/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-muted">
+<p>© 2026 SOLUNEXO. Managua, Nicaragua.</p>
+<div class="flex items-center gap-4">
+<span>Diseño y Desarrollo Web</span>
+<span>•</span>
+<span>Demos en Vivo</span>
+</div>
+</div>
+</footer>
+<!-- PERSISTENT FLOATING WHATSAPP BUTTON (BOTTOM-RIGHT) -->
+<aside class="fixed bottom-6 right-6 z-50">
+<a aria-label="Cotizar por WhatsApp" class="float-soft group inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-whatsapp text-white font-bold text-sm shadow-clay-float hover:brightness-105 hover:scale-105 active:scale-95 transition-all" href="https://wa.me/50585872276?text=Hola%20SOLUNEXO,%20deseo%20cotizar%20mi%20página%20web" rel="noopener noreferrer" target="_blank">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+</span>
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span class="hidden sm:inline">Cotizar por WhatsApp (+505)</span>
+<span class="sm:hidden">WhatsApp</span>
+</a>
+</aside>
+<!-- Interactive Scripts -->
+<script>
+    const revealElements = document.querySelectorAll('.reveal, section, main .group');
+    revealElements.forEach((element, index) => {
+      if (!element.classList.contains('reveal')) element.classList.add('reveal');
+      element.style.transitionDelay = `${Math.min(index % 6, 5) * 70}ms`;
+    });
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(element => revealObserver.observe(element));
+
+    function setCurrency(type) {
+      const usdBtn = document.getElementById('btn-usd');
+      const nioBtn = document.getElementById('btn-nio');
+      const priceElements = document.querySelectorAll('.price-display');
+
+      if (type === 'USD') {
+        usdBtn.className = 'px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-blue text-white shadow-sm';
+        nioBtn.className = 'px-4 py-1.5 rounded-xl text-xs font-semibold transition-all text-brand-muted hover:text-brand-dark';
+        priceElements.forEach(el => {
+          el.textContent = el.getAttribute('data-usd');
+        });
+      } else {
+        nioBtn.className = 'px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-blue text-white shadow-sm';
+        usdBtn.className = 'px-4 py-1.5 rounded-xl text-xs font-semibold transition-all text-brand-muted hover:text-brand-dark';
+        priceElements.forEach(el => {
+          el.textContent = el.getAttribute('data-nio');
+        });
+      }
+    }
+
+    function handleQuickQuote(e) {
+      e.preventDefault();
+      const name = document.getElementById('quote-name').value;
+      const business = document.getElementById('quote-business').value;
+      const phone = document.getElementById('quote-phone').value;
+      const sector = document.getElementById('quote-sector').value;
+
+      const message = encodeURIComponent(`Hola SOLUNEXO, mi nombre es ${name} de "${business}". Deseo cotizar una página web para ${sector}. Mi contacto es ${phone}.`);
+      window.open(`https://wa.me/50585872276?text=${message}`, '_blank');
+    }
+  </script>
+</body></html>

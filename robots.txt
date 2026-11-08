@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://solunexo.com
+
+# Sitemaps
+Sitemap: https://solunexo.com/sitemap.xml

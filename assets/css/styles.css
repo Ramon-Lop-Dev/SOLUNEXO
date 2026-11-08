@@ -1,0 +1,363 @@
+/* SOLUNEXO - Estilos Principales & Componentes Visuales */
+
+/* Configuración de scroll y tipografía base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #FAFAFC;
+  color: #0F172A;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Claymorphism y Sombras Especiales */
+.shadow-clay {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+}
+
+.shadow-clay-card {
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.shadow-clay-button {
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.shadow-clay-float {
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Animaciones y Efectos Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(.2, .7, .2, 1), transform 700ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.float-soft {
+  animation: float-soft 4s ease-in-out infinite;
+}
+
+.float-delay {
+  animation-delay: 900ms;
+}
+
+@keyframes float-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* BOTÓN FLOTANTE WHATSAPP CIRCULAR */
+.float-wa {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 32px;
+  box-shadow: 0 10px 25px -4px rgba(37, 211, 102, 0.45), 0 4px 6px -2px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.float-wa:hover {
+  background-color: #20ba5a;
+  color: #FFF;
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 16px 32px -4px rgba(37, 211, 102, 0.55), 0 8px 10px -2px rgba(0, 0, 0, 0.12);
+}
+
+.float-wa:active {
+  transform: scale(0.95);
+}
+
+.float-wa .my-float {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pulso animado sutil en WhatsApp */
+.float-wa::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background-color: #25d366;
+  opacity: 0.7;
+  z-index: -1;
+  animation: wa-pulse 2.4s ease-out infinite;
+}
+
+@keyframes wa-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  65% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Tooltip opcional hover sobre WhatsApp */
+.float-wa .wa-tooltip {
+  position: absolute;
+  right: 72px;
+  white-space: nowrap;
+  background: #0F172A;
+  color: #FFF;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.float-wa:hover .wa-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* MODAL DE VISTA PREVIA INTERACTIVA (DEMO VIEWER) */
+.demo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 16px;
+}
+
+.demo-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.demo-modal-dialog {
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 1200px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.96);
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.demo-modal.active .demo-modal-dialog {
+  transform: scale(1);
+}
+
+.demo-frame-container {
+  flex: 1;
+  background: #F1F5F9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.demo-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #FFFFFF;
+  transition: width 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Modos de vista previa responsiva */
+.demo-frame.mode-desktop {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+
+.demo-frame.mode-tablet {
+  width: 768px;
+  height: 94%;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.demo-frame.mode-mobile {
+  width: 375px;
+  height: 94%;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Ajustes responsivos generales */
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  main section.w-full.max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  main section.w-full.max-w-7xl h1 {
+    font-size: 2.25rem;
+    line-height: 1.1;
+  }
+
+  #demos-portafolio article {
+    border-radius: 1.25rem;
+  }
+
+  #demos-portafolio article .p-6 {
+    padding: 1.25rem;
+  }
+
+  #demos-portafolio article .flex.items-center.justify-center.gap-3 {
+    flex-wrap: wrap;
+  }
+
+  #demos-portafolio article .flex.items-center.justify-center.gap-2 a,
+  #demos-portafolio article .flex.items-center.justify-center.gap-2 button {
+    min-height: 42px;
+  }
+
+  #precios .p-8,
+  #contacto .p-8,
+  #proceso .p-8 {
+    padding: 1.25rem;
+  }
+
+  #precios .text-4xl {
+    font-size: 2.25rem;
+  }
+
+  #demo-modal .demo-modal-dialog {
+    height: 96vh;
+    border-radius: 16px;
+  }
+
+  #demo-modal .demo-modal-dialog > .flex {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .demo-modal {
+    padding: 6px;
+  }
+
+  .demo-frame.mode-tablet {
+    width: min(768px, 100%);
+    height: 96%;
+  }
+
+  .demo-frame.mode-mobile {
+    width: min(375px, 92%);
+    height: 96%;
+    border-radius: 18px;
+  }
+
+  #demo-modal-title {
+    max-width: 150px;
+  }
+
+  #demo-modal-external {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
+
+  #demo-modal-external span:first-child {
+    font-size: 0;
+  }
+
+  #demo-modal-external span:first-child::after {
+    content: "Abrir";
+    font-size: 0.75rem;
+  }
+
+  .float-wa {
+    width: 52px;
+    height: 52px;
+    right: 16px;
+    bottom: 16px;
+    font-size: 28px;
+  }
+
+  footer .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  main section.w-full.max-w-7xl h1 {
+    font-size: 2rem;
+  }
+
+  #demo-modal-title {
+    max-width: 110px;
+  }
+
+  #demo-modal-external span:first-child {
+    display: none;
+  }
+}
+
+/* Reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .float-soft {
+    animation: none;
+  }
+  .float-wa::before {
+    animation: none;
+  }
+}
